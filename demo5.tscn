@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://demo5.gd" type="Script" id=1]
+[ext_resource path="res://Assets/robisplash_bg.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "demo5"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -450 ), Vector2( 0, 0 ) ]
+}
+
+[node name="demo5" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 800.0
+margin_bottom = 450.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+anims/demo5 = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.5
+autostart = true
+
+[node name="next" type="Button" parent="."]
+margin_left = 434.393
+margin_top = 392.862
+margin_right = 529.393
+margin_bottom = 431.862
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="."]
+margin_left = 321.024
+margin_top = 390.617
+margin_right = 416.024
+margin_bottom = 429.617
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
